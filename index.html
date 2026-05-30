@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Asset Acquisition | Zero Trust Vision</title>
+    <meta name="theme-color" content="#020617">
+    <title>Zero Trust Vision | Premium Domain Acquisition</title>
+    <meta name="description" content="zerotrust.vision is a premium digital asset available for acquisition. The ultimate digital asset for enterprise cybersecurity and zero trust network architecture.">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23020617'/><path d='M50,15 L85,30 L85,60 Q85,85 50,95 Q15,85 15,60 L15,30 Z' fill='none' stroke='%2322c55e' stroke-width='8'/><path d='M40,55 L50,65 L70,40' fill='none' stroke='%2322c55e' stroke-width='6' stroke-linecap='round'/></svg>">
+    
     <style>
         :root {
             --primary: #6366f1; 
@@ -11,7 +16,7 @@
             --glass: rgba(255, 255, 255, 0.05);
             --border: rgba(255, 255, 255, 0.1);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
         body {
             background-color: var(--bg); color: white; display: flex;
             align-items: center; justify-content: center; min-height: 100vh;
@@ -28,19 +33,23 @@
             background: linear-gradient(135deg, #818cf8, #c084fc);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        p { color: #94a3b8; margin-bottom: 2rem; font-size: 0.95rem; }
+        p { color: #94a3b8; margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.5; }
         input, textarea {
             width: 100%; padding: 16px; margin: 8px 0; background: rgba(0,0,0,0.2);
-            border: 1px solid var(--border); border-radius: 12px; color: white;
+            border: 1px solid var(--border); border-radius: 12px; color: white; outline: none;
+            transition: 0.3s;
         }
+        input:focus, textarea:focus { border-color: #818cf8; box-shadow: 0 0 10px rgba(129, 140, 248, 0.2); }
         .action-btn {
             width: 100%; padding: 16px; margin-top: 15px; background: var(--primary);
             color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer;
-            transition: 0.3s;
+            transition: 0.3s; font-size: 1rem;
         }
-        .action-btn:hover { background: #4f46e5; transform: scale(1.02); }
-        #success-screen { display: none; padding: 2rem 0; }
-        .success-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .action-btn:hover { background: #4f46e5; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3); }
+        #success-screen { display: none; padding: 2rem 0; animation: fadeIn 0.5s ease; }
+        .success-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .seo-hidden { display: none; }
     </style>
 </head>
 <body>
@@ -51,13 +60,18 @@
             <p>This premium domain is available for acquisition. Submit your proposal.</p>
             
             <form id="offerForm" action="https://formsubmit.co/kabirhussaing95@GMAIL.COM" method="POST">
-                <input type="hidden" name="_subject" value="New Offer for zerotrust.vision">
+                <input type="hidden" name="_subject" value="New High-Value Offer for zerotrust.vision">
                 <input type="hidden" name="_captcha" value="false">
                 
                 <input type="text" name="Name" placeholder="Full Name / Company" required>
                 <input type="email" name="Email" placeholder="Corporate Email" required>
-                <input type="tel" name="Offer_Amount" id="offerAmountInput" placeholder="$ Offer Amount" required inputmode="numeric">
-                <textarea name="Message" rows="3" placeholder="Intended use..." required></textarea>
+                
+                <div style="position: relative;">
+                    <span style="position: absolute; left: 16px; top: 22px; color: #818cf8; font-weight: bold;">$</span>
+                    <input type="tel" name="Offer_Amount" id="offerAmountInput" placeholder="Offer Amount (USD)" required inputmode="numeric" style="padding-left: 35px;">
+                </div>
+
+                <textarea name="Message" rows="3" placeholder="Intended use for the domain..." required></textarea>
                 
                 <button type="submit" id="submitBtn" class="action-btn">Submit Secure Offer</button>
             </form>
@@ -65,10 +79,14 @@
 
         <div id="success-screen">
             <div class="success-icon">✅</div>
-            <h3>Offer Submitted</h3>
-            <p>Your proposal is securely routed. We will contact you shortly.</p>
-            <button onclick="location.reload()" class="action-btn">Done</button>
+            <h3 style="margin-bottom: 10px; font-size: 1.5rem;">Offer Submitted</h3>
+            <p>Your proposal is securely routed. Our team will contact you shortly.</p>
+            <button onclick="window.location.reload();" class="action-btn" style="background: transparent; border: 2px solid #818cf8; color: #818cf8;">Done</button>
         </div>
+    </div>
+
+    <div class="seo-hidden">
+        Zero Trust Vision is a premium cybersecurity domain for sale. Perfect for zero trust architecture networks, infosec startups, and enterprise security companies.
     </div>
 
     <script>
@@ -80,10 +98,22 @@
 
         document.getElementById('offerForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Processing...";
+            btn.disabled = true;
+
             fetch(this.action, { method: 'POST', body: new FormData(this) })
-            .then(() => {
-                document.getElementById('form-section').style.display = 'none';
-                document.getElementById('success-screen').style.display = 'block';
+            .then(response => {
+                if(response.ok) {
+                    document.getElementById('form-section').style.display = 'none';
+                    document.getElementById('success-screen').style.display = 'block';
+                } else {
+                    btn.innerText = "Error. Please try again.";
+                    btn.disabled = false;
+                }
+            }).catch(() => {
+                btn.innerText = "Error. Please try again.";
+                btn.disabled = false;
             });
         });
     </script>
